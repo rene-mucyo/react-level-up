@@ -1,25 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import Nav from "./componets/Nav";
+import {useEffect, useState} from "react";
+import axios from "axios";
+import LoadingIcon from "./componets/LoadingIcon";
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+const App = () => {
+    const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(true)
+    useEffect(() => {
+        axios.get("https://dummyjson.com/posts").then((res) => {
+            setPosts(res.data.posts)
+            setLoading(false)
+        }).catch((error) => {
+            console.log(error.message())
+        }).finally(() => {
+            console.log("In final")
+        });
+    }, [])
+    return (
+        <div className="App">
+            {loading ? <LoadingIcon/> : <Nav posts={posts}/>}
+        </div>
+    );
 }
 
 export default App;
