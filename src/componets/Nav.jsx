@@ -1,3 +1,5 @@
+import {Link, Outlet} from "react-router-dom";
+
 const Nav = () => {
     return (<>
         <nav className="navbar navbar-expand-lg bg-body-tertiary bg-primary">
@@ -10,21 +12,22 @@ const Nav = () => {
                 <div className="collapse navbar-collapse" id="navbarNav">
                     <ul className="navbar-nav">
                         <li className="nav-item">
-                            <a className="nav-link active" aria-current="page" href="#">Home</a>
+                            <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Features</a>
+                            <Link className="nav-link" to="/contact">Contact</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link" href="#">Pricing</a>
+                            <Link className="nav-link" to="/blogs">Blog</Link>
                         </li>
                         <li className="nav-item">
-                            <a className="nav-link disabled">Disabled</a>
+                            <Link className="nav-link" to="/about">About</Link>
                         </li>
                     </ul>
                 </div>
             </div>
         </nav>
+        <Outlet/>
     </>);
 }
 export default Nav;

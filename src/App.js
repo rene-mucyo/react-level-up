@@ -6,6 +6,7 @@ import Services from "./componets/Services";
 import {BrowserRouter, Route, Routes} from "react-router-dom";
 import Forms from "./componets/Forms";
 import About from "./componets/About";
+import Nav from "./componets/Nav";
 
 const App = () => {
     const [posts, setPosts] = useState([])
@@ -28,10 +29,12 @@ const App = () => {
         // <div className="App">
         <BrowserRouter>
             <Routes>
-                <Route index element={<Home/>}/>
-                <Route path="/contact" element={<Forms/>}/>
-                <Route path="blogs" element={<Services/>}/>
-                <Route path="contact" element={<About/>}/>
+                <Route path="/" element={<Nav/>}>
+                    <Route index element={<Home/>}/>
+                    <Route path="contact" element={<Forms/>}/>
+                    <Route path="blogs" element={<Services/>}/>
+                    <Route path="about" element={<About/>}/>
+                </Route>
             </Routes>
         </BrowserRouter>
         // </div>
